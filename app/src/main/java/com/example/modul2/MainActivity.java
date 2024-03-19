@@ -1,0 +1,37 @@
+package com.example.modul2;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    int gajiStatus, gajiGolongan;
+    RadioGroup golongan;
+    CheckBox status;
+    @Override public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void hitung (View v){
+        EditText nama = (EditText) findViewById (R.id.nama);
+        TextView outputNama = (TextView) findViewById (R.id.outputNama);
+        String name = nama.getText().toString(); outputNama.setText("Total Gaji Anda "+name);
+                status = (CheckBox) findViewById (R.id.menikah);
+        if (status.isChecked()) { gajiStatus = 500000;
+        } else { gajiStatus = 0;
+        }
+
+        golongan = (RadioGroup) findViewById (R.id.rgGolongan); int gol = golongan.getCheckedRadioButtonId(); if (gol == R.id.rbGolongan1){ gajiGolongan = 1000000;
+        }else
+        if (gol == R.id.rbGolongan2){ gajiGolongan = 2000000;
+        }; int totalGaji = gajiStatus+gajiGolongan;
+        TextView total = (TextView) findViewById (R.id.outputGaji);
+        total.setText(String.valueOf(totalGaji));
+    }
+}
